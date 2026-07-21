@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Machines | AI Predictive Maintenance</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+<footer>
+
+
+<p>
+© 2026 AI Predictive Maintenance System | Developed using Python Flask & Machine Learning
+</p>
+
+
+</footer>
+
+body{
+
+min-height:100vh;
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e293b,
+#334155
+);
+
+color:white;
+
+padding:30px;
+
+}
+
+
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+
+
+.header h1{
+
+font-size:30px;
+
+}
+
+
+
+.btn{
+
+background:#38bdf8;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+text-decoration:none;
+
+color:#0f172a;
+
+font-weight:bold;
+
+}
+
+
+
+
+.machine-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+
+
+.machine-card{
+
+background:rgba(255,255,255,0.12);
+
+padding:25px;
+
+border-radius:20px;
+
+backdrop-filter:blur(15px);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+
+}
+
+
+
+.machine-card h2{
+
+margin-bottom:15px;
+
+}
+
+
+
+.status{
+
+padding:8px 15px;
+
+border-radius:20px;
+
+display:inline-block;
+
+font-weight:bold;
+
+}
+
+
+
+.good{
+
+background:#22c55e;
+
+color:white;
+
+}
+
+
+
+.warn{
+
+background:#facc15;
+
+color:black;
+
+}
+
+
+
+.bad{
+
+background:#ef4444;
+
+color:white;
+
+}
+
+
+
+
+.info{
+
+margin-top:15px;
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+
+
+@media(max-width:900px){
+
+.machine-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<div class="header">
+
+
+<h1>
+⚙️ Machine Monitoring
+</h1>
+
+
+<a href="/dashboard" class="btn">
+Dashboard
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="machine-grid">
+
+
+
+
+
+<div class="machine-card">
+
+
+<h2>
+Machine 01
+</h2>
+
+
+<span class="status good">
+Healthy
+</span>
+
+
+<div class="info">
+
+Temperature: 65°C
+
+<br>
+
+Vibration: 20%
+
+<br>
+
+Runtime: 180 Hours
+
+<br>
+
+Last Maintenance: 10 Days Ago
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="machine-card">
+
+
+<h2>
+Machine 02
+</h2>
+
+
+<span class="status warn">
+Warning
+</span>
+
+
+<div class="info">
+
+Temperature: 78°C
+
+<br>
+
+Vibration: 55%
+
+<br>
+
+Runtime: 250 Hours
+
+<br>
+
+Maintenance Required Soon
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="machine-card">
+
+
+<h2>
+Machine 03
+</h2>
+
+
+<span class="status bad">
+Critical
+</span>
+
+
+<div class="info">
+
+Temperature: 90°C
+
+<br>
+
+Vibration: 75%
+
+<br>
+
+Runtime: 320 Hours
+
+<br>
+
+Immediate Inspection Required
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

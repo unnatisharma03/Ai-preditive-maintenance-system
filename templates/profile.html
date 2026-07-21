@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <!-- Profile Image -->
+        <div class="profile-image">
+            <div class="avatar">
+                👤
+            </div>
+        </div>
+
+
+        <!-- User Details -->
+        <h1>{{ name if name else "Unnati Sharma" }}</h1>
+
+        <p class="role">
+            AI Predictive Maintenance Administrator
+        </p>
+
+
+        <div class="email-box">
+            <span>Email Address</span>
+            <h3>{{ email if email else "unnatisharma2320@gmail.com" }}</h3>
+        </div>
+
+
+
+        <!-- System Information -->
+
+        <h2 class="section-title">
+            System Information
+        </h2>
+
+
+        <div class="info-container">
+
+
+            <div class="info-card">
+
+                <div class="icon">
+                    🌲
+                </div>
+
+                <h3>
+                    Random Forest
+                </h3>
+
+                <p>
+                    Machine Learning Model
+                </p>
+
+            </div>
+
+
+
+            <div class="info-card">
+
+                <div class="icon">
+                    📡
+                </div>
+
+                <h3>
+                    4 Sensors
+                </h3>
+
+                <p>
+                    Temperature<br>
+                    Vibration<br>
+                    Pressure<br>
+                    Runtime
+                </p>
+
+            </div>
+
+
+
+            <div class="info-card">
+
+                <div class="icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Active
+                </h3>
+
+                <p>
+                    AI Prediction System
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Project Details -->
+
+        <div class="project-details">
+
+            <h2>
+                About Project
+            </h2>
+
+
+            <p>
+                AI Predictive Maintenance System uses Machine Learning
+                techniques to analyze machine sensor data and predict
+                possible equipment failures before they occur.
+            </p>
+
+
+            <div class="details-grid">
+
+
+                <div>
+                    <b>Project:</b>
+                    <span>AI Predictive Maintenance System</span>
+                </div>
+
+
+                <div>
+                    <b>Algorithm:</b>
+                    <span>Random Forest Classifier</span>
+                </div>
+
+
+                <div>
+                    <b>Technology:</b>
+                    <span>Python, Flask, Machine Learning</span>
+                </div>
+
+
+                <div>
+                    <b>Status:</b>
+                    <span class="active">
+                        Running Successfully
+                    </span>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Alerts - AI Predictive Maintenance
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="container">
+
+
+<h1>
+🚨 AI Maintenance Alerts
+</h1>
+
+
+<p class="subtitle">
+Smart notifications generated from machine health analysis
+</p>
+
+
+
+
+<div class="alert-grid">
+
+
+
+{% for alert in alerts %}
+
+
+
+<div class="alert-box">
+
+
+
+<div class="alert-top">
+
+
+<h2>
+{{alert.machine}}
+</h2>
+
+
+
+{% if alert.level == "Critical" %}
+
+<span class="critical-badge">
+Critical
+</span>
+
+
+{% elif alert.level == "Warning" %}
+
+<span class="warning-badge">
+Warning
+</span>
+
+
+{% else %}
+
+<span class="healthy-badge">
+Healthy
+</span>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+
+
+<p>
+⚠️ {{alert.issue}}
+</p>
+
+
+
+<p>
+🕒 {{alert.time}}
+</p>
+
+
+
+<hr>
+
+
+<h4>
+Recommended Action
+</h4>
+
+
+<p>
+{{alert.action}}
+</p>
+
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+{% endblock %}

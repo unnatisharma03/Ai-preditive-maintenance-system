@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+body{
+    background:#0f172a;
+}
+
+
+.dashboard-header{
+    margin-bottom:30px;
+}
+
+
+.dashboard-header h1{
+    color:white;
+    font-size:32px;
+    font-weight:700;
+}
+
+
+.dashboard-header p{
+    color:#94a3b8;
+}
+
+
+.stat-card{
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    color:white;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+    transition:0.3s;
+
+}
+
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.icon{
+
+    font-size:40px;
+
+}
+
+
+
+.number{
+
+    font-size:35px;
+
+    font-weight:700;
+
+    margin-top:10px;
+
+}
+
+
+
+.title{
+
+    color:#cbd5e1;
+
+}
+
+
+
+
+.chart-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:25px;
+
+}
+
+
+
+.chart-card h5{
+
+    color:#0f172a;
+
+    font-weight:700;
+
+}
+
+
+
+.insight{
+
+    margin-top:30px;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    color:white;
+
+}
+
+
+
+</style>
+
+
+
+
+
+<div class="dashboard-header">
+
+<h1>
+🤖 AI Predictive Maintenance Dashboard
+</h1>
+
+<p>
+Welcome {{user}} | Machine Health Monitoring System
+</p>
+
+</div>
+
+
+
+
+
+<div class="row g-4">
+
+
+<div class="col-md-3">
+
+<div class="stat-card">
+
+<div class="icon">
+🏭
+</div>
+
+<div class="number">
+{{data.total}}
+</div>
+
+<div class="title">
+Total Machines
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-3">
+
+<div class="stat-card">
+
+<div class="icon">
+✅
+</div>
+
+<div class="number">
+{{data.healthy}}
+</div>
+
+<div class="title">
+Healthy
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+<div class="stat-card">
+
+<div class="icon">
+⚠️
+</div>
+
+<div class="number">
+{{data.warning}}
+</div>
+
+<div class="title">
+Warning
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+<div class="stat-card">
+
+<div class="icon">
+🚨
+</div>
+
+<div class="number">
+{{data.critical}}
+</div>
+
+<div class="title">
+Maintenance Required
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+
+<div class="chart-card">
+
+<h5>
+Temperature Analysis
+</h5>
+
+<canvas id="tempChart"></canvas>
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+<div class="chart-card">
+
+<h5>
+Vibration Monitoring
+</h5>
+
+<canvas id="vibrationChart"></canvas>
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+<div class="col-md-6">
+
+<div class="chart-card">
+
+<h5>
+Machine Health Score
+</h5>
+
+
+<canvas id="healthChart"></canvas>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="chart-card">
+
+<h5>
+Failure Risk Prediction
+</h5>
+
+
+<canvas id="riskChart"></canvas>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="insight">
+
+<h4>
+🧠 AI Insight
+</h4>
+
+<p>
+
+Random Forest model analyzes Temperature, Vibration, Pressure and Runtime data to predict possible machine failures before breakdown.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+
+let temperature = {{data.temperature | safe}};
+
+let vibration = {{data.vibration | safe}};
+
+let health = {{data.health | safe}};
+
+let risk = {{data.risk | safe}};
+
+
+
+function createChart(id,label,values,color){
+
+
+new Chart(document.getElementById(id),{
+
+
+type:"line",
+
+
+data:{
+
+
+labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+
+
+datasets:[{
+
+label:label,
+
+data:values,
+
+borderColor:color,
+
+tension:0.4
+
+}]
+
+},
+
+
+options:{
+
+responsive:true
+
+}
+
+
+});
+
+
+}
+
+
+
+createChart(
+"tempChart",
+"Temperature",
+temperature,
+"red"
+);
+
+
+
+createChart(
+"vibrationChart",
+"Vibration",
+vibration,
+"blue"
+);
+
+
+
+createChart(
+"healthChart",
+"Health %",
+health,
+"green"
+);
+
+
+
+createChart(
+"riskChart",
+"Risk %",
+risk,
+"orange"
+);
+
+
+
+</script>
+
+
+
+{% endblock %}

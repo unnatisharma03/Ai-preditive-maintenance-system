@@ -1,0 +1,126 @@
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:'Segoe UI',sans-serif;
+
+}
+
+
+body{
+
+background:#0f172a;
+
+}
+
+
+/* Smooth Animation */
+
+.card-box,
+.profile-card,
+.prediction-box,
+.report-card{
+
+transition:0.3s;
+
+}
+
+
+.card-box:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+
+/* Navbar */
+
+.navbar{
+
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+
+}
+
+
+
+/* Buttons */
+
+button,
+.btn{
+
+transition:0.3s;
+
+}
+
+
+button:hover,
+.btn:hover{
+
+transform:scale(1.03);
+
+}
+
+
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+background:#0f172a;
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+background:#2563eb;
+
+border-radius:10px;
+
+}
+.info-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-top:30px;
+}
+
+
+.info-box{
+    width:180px;
+    padding:20px;
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+}
+
+
+.info-box h2{
+    font-size:35px;
+    color:#00ffff;
+}
+
+
+.info-box h3{
+    color:white;
+    margin:10px;
+}
+
+
+.info-box p{
+    color:#ddd;
+    font-size:14px;
+}

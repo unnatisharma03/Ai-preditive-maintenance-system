@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+.prediction-container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card-box{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:30px;
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    margin-bottom:30px;
+}
+
+.title{
+    font-size:30px;
+    font-weight:700;
+    text-align:center;
+}
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
+
+.form-control{
+    background:white;
+    border-radius:12px;
+    padding:12px;
+}
+
+.btn-predict{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:25px;
+    background:#38bdf8;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.btn-predict:hover{
+    background:#7dd3fc;
+}
+
+.result{
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+    background:#1e293b;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.upload-box{
+    border:2px dashed #38bdf8;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.table{
+    color:white;
+}
+
+</style>
+
+
+<div class="prediction-container">
+
+
+<div class="card-box">
+
+
+<h1 class="title">
+🤖 AI Machine Failure Prediction
+</h1>
+
+
+<p class="subtitle">
+Enter machine sensor values or upload CSV file for prediction
+</p>
+
+
+
+<!-- Manual Prediction -->
+
+<form action="/prediction" method="POST">
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label>Temperature</label>
+
+<input type="number"
+name="temperature"
+step="any"
+class="form-control"
+placeholder="Example 75"
+required>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<label>Vibration</label>
+
+<input type="number"
+name="vibration"
+step="any"
+class="form-control"
+placeholder="Example 30"
+required>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<label>Pressure</label>
+
+<input type="number"
+name="pressure"
+step="any"
+class="form-control"
+placeholder="Example 45"
+required>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<label>Runtime</label>
+
+<input type="number"
+name="runtime"
+step="any"
+class="form-control"
+placeholder="Example 180"
+required>
+
+</div>
+
+
+</div>
+
+
+
+<button class="btn-predict">
+🔍 Predict Status
+</button>
+
+
+</form>
+
+
+
+{% if result %}
+
+<div class="result">
+
+{% if "Healthy" in result %}
+
+✅ {{result}}
+
+{% elif "Warning" in result %}
+
+⚠️ {{result}}
+
+{% else %}
+
+🚨 {{result}}
+
+{% endif %}
+
+
+{% if confidence %}
+
+<br>
+
+<small>
+Confidence : {{confidence}}%
+</small>
+
+{% endif %}
+
+
+</div>
+
+
+{% endif %}
+
+
+</div>
+
+
+
+
+
+<!-- CSV Upload -->
+
+
+<div class="card-box">
+
+
+<h3>
+📂 Upload CSV File
+</h3>
+
+
+<p>
+CSV should contain:
+<br>
+Temperature, Vibration, Pressure, Runtime
+</p>
+
+
+
+<div class="upload-box">
+
+
+<form action="/csv_prediction" 
+method="POST"
+enctype="multipart/form-data">
+
+
+<input type="file"
+name="file"
+class="form-control mb-3"
+accept=".csv"
+required>
+
+
+<button class="btn-predict">
+
+Upload & Predict CSV
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- CSV Result -->
+
+
+{% if predictions %}
+
+
+<div class="card-box">
+
+
+<h3>
+📊 CSV Prediction Result
+</h3>
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>Temperature</th>
+<th>Vibration</th>
+<th>Pressure</th>
+<th>Runtime</th>
+<th>Status</th>
+
+</tr>
+
+
+
+{% for row in predictions %}
+
+
+<tr>
+
+
+<td>{{row.Temperature}}</td>
+
+<td>{{row.Vibration}}</td>
+
+<td>{{row.Pressure}}</td>
+
+<td>{{row.Runtime}}</td>
+
+
+<td>
+
+
+{% if "Healthy" in row.Result %}
+
+✅ {{row.Result}}
+
+{% elif "Warning" in row.Result %}
+
+⚠️ {{row.Result}}
+
+{% else %}
+
+🚨 {{row.Result}}
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+{% endblock %}

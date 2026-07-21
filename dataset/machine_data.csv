@@ -1,0 +1,15 @@
+Temperature,Vibration,Pressure,Runtime,Status
+40,10,30,100,Healthy
+45,12,32,150,Healthy
+50,15,35,200,Healthy
+55,18,38,250,Healthy
+60,20,40,300,Healthy
+65,30,45,400,Warning
+70,35,50,500,Warning
+75,40,55,600,Warning
+80,50,65,700,Warning
+85,60,70,800,Critical
+90,70,75,900,Critical
+95,80,85,1000,Critical
+100,90,90,1100,Critical
+105,95,95,1200,Critical
